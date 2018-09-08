@@ -10,9 +10,17 @@ stream
   .pipe(JSONStream.parse('*'))
   .on('data', developer => {
     if (typeof scores[developer.location] === 'undefined') {
-      scores[developer.location] = developer.score;
+      scores[developer.location] = {
+        score: developer.score,
+        repos: developer.repos.length,
+        developers: 1,
+      };
     } else {
-      scores[developer.location] += developer.score;
+      scores[developer.location] = {
+        score: scores[developer.location].score + developer.score,
+        repos: scores[developer.location].repos + developer.repos.length,
+        developers: scores[developer.location].developers + 1,
+      };
     }
   })
   .on('end', () => {
