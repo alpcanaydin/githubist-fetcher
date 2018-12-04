@@ -40,13 +40,15 @@ const main = async () => {
 
     // Respect to rate limits!
     // We have to make these requests synchronously.
-    for (const user of users) {
-      console.log(`Started to fetching ${user.username}`);
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      console.log(`Started to fetching ${user.username} (${i + 1}/${users.length})`);
 
       try {
         const userData = await github.getUserAndRepos(user.username);
         jsonStream.write(userData);
         console.log(`${user.username} has been finished.`);
+
       } catch (err) {
         console.log(`Error occured while fetching ${user.username}, skipping.`);
         console.log(err);
