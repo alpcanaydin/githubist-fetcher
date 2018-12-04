@@ -48,7 +48,6 @@ const main = async () => {
         const userData = await github.getUserAndRepos(user.username);
         jsonStream.write(userData);
         console.log(`${user.username} has been finished.`);
-
       } catch (err) {
         console.log(`Error occured while fetching ${user.username}, skipping.`);
         console.log(err);
