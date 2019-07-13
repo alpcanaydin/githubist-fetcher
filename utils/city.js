@@ -74,7 +74,7 @@ const getAll = () => [
   { name: 'malatya', variants: [], dates: ['2008-01-01..2019-01-01'] },
   { name: 'manisa', variants: [], dates: ['2008-01-01..2019-01-01'] },
   {
-    name: 'kahmaranmaraş',
+    name: 'kahramanmaraş',
     variants: ['kahramanmaras', 'maraş', 'maras'],
     dates: ['2008-01-01..2019-01-01'],
   },
