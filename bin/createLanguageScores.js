@@ -33,6 +33,22 @@ stream
     };
     delete scores.FORTRAN;
 
+    scores.Matlab = {
+      score: scores.Matlab.score + scores.MATLAB.score,
+      stars: scores.Matlab.stars + scores.MATLAB.stars,
+      repos: scores.Matlab.repos + scores.MATLAB.repos,
+      developers: [...new Set([...scores.Matlab.developers, ...scores.MATLAB.developers])],
+    };
+    delete scores.MATLAB;
+
+    scores.Pawn = {
+      score: scores.Pawn.score + scores.PAWN.score,
+      stars: scores.Pawn.stars + scores.PAWN.stars,
+      repos: scores.Pawn.repos + scores.PAWN.repos,
+      developers: [...new Set([...scores.Pawn.developers, ...scores.PAWN.developers])],
+    };
+    delete scores.PAWN;
+
     const result = Object.entries(scores).reduce(
       (prev, [name, data]) => ({
         ...prev,
