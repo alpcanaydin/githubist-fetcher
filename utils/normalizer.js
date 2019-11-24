@@ -25,7 +25,7 @@ const repoNormalizer = repo => ({
   github_url: repo.html_url,
   stars: repo.stargazers_count,
   forks: repo.forks_count,
-  language: repo.language,
+  language: repo.language || 'Bilinmiyor',
   github_created_at: repo.created_at,
 });
 
@@ -35,7 +35,7 @@ const normalizer = (city, data) => {
     .filter(r => r.fork === false && r.language !== null)
     .map(repoNormalizer);
   const totalStarred = repos.reduce((prev, cur) => prev + cur.stars, 0);
-  const developerScore = data.followers * 1.2 + totalStarred;
+  const developerScore = data.followers * 2 + totalStarred;
 
   const developer = developerNormalizer(data, normalizedCity, developerScore, totalStarred);
 
