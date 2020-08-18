@@ -90,7 +90,7 @@ const getAll = () => [
 
 const filter = name => getAll().filter(c => c.name === name || c.variants.includes(name));
 
-const formatDate = date => format(date, 'yyyy.MM.dd');
+const formatDate = date => format(date, 'yyyy-MM-dd');
 
 const dateIntervalToRange = interval => {
   const dates = [];
