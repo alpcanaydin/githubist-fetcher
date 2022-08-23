@@ -1,11 +1,9 @@
 /* eslint-disable class-methods-use-this */
 
-const Octokit = require('@octokit/rest');
+const { Octokit } = require('@octokit/rest');
 
 class Github {
   constructor(tokens) {
-    this.octokit = Octokit();
-
     this.tokens = tokens;
     this.activeTokenIndex = -1;
 
@@ -19,9 +17,8 @@ class Github {
       this.activeTokenIndex = this.activeTokenIndex + 1;
     }
 
-    this.octokit.authenticate({
-      type: 'oauth',
-      token: this.tokens[this.activeTokenIndex],
+    this.octokit = new Octokit({
+      auth: this.tokens[this.activeTokenIndex],
     });
   }
 
@@ -55,6 +52,8 @@ class Github {
 
       return [...data, ...response.data.items];
     } catch (err) {
+      console.log(err);
+
       this.updateActiveToken();
       return this.searchUsers(q, sort, order, page, per_page, data);
     }
